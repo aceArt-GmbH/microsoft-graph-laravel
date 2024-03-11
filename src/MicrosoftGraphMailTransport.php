@@ -33,10 +33,9 @@ class MicrosoftGraphMailTransport extends AbstractTransport {
      * @param  $Config
      * @return void
      */
-    public function __construct(array $Config = []){
-        
-        $this->Config = $Config;        
+    public function __construct(public array $Config = [], ?EventDispatcherInterface $dispatcher = null, ?LoggerInterface $logger = null){
         $this->Graph = new MicrosoftGraph;
+        parent::__construct($dispatcher = null, $logger = null);
     }
 
     protected function doSend(SentMessage $Message): void {
